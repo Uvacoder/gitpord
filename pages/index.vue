@@ -89,23 +89,6 @@ export default {
 }
 
 
-#over-all-wrapper {
-  width: 70%;
-  margin: auto;
-}
-
-#content-wrapper {
-  width: 100%;
-  height: auto;
-  display: flex;
-}
-
-#user-details-wrapper {
-  width: 300px;
-  height: auto;
-  position: relative;
-}
-
 #profile-pic-wrapper {
   width: 270px;
   height: 270px;
@@ -250,11 +233,34 @@ export default {
   cursor: pointer;
 }
 
+
+
+
+#over-all-wrapper {
+  width: 70%;
+  margin: auto;
+}
+
+#content-wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+#user-details-wrapper {
+  width: 300px;
+  height: auto;
+  position: relative;
+}
+
+
 #more-wrapper {
   min-height: 100vh;
   width: 100%;
   flex: 1;
 }
+
+
 
 
 </style>
