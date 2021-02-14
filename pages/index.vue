@@ -20,7 +20,21 @@
           <li>Explore</li>
         </ul>
 
-        <div id="place-holder-bnt"></div>
+        <div id="place-holder-bnt">
+          <ul id="btns-one">
+            <li>
+              <button><span class="mdi mdi-bell-outline"></span></button>
+              <button>
+                <span class="mdi mdi-plus"></span>
+                <span class="mdi mdi-chevron-down"></span>
+              </button>
+              <button>
+                <img src="~/static/profile.jpg" alt="" />
+                <span class="mdi mdi-chevron-down"></span>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div id="header">
@@ -33,7 +47,7 @@
         </li>
 
         <li>
-          <button>
+          <button class="active-tab">
             <span class="mdi mdi-book-play-outline"></span> Repositories
           </button>
         </li>
@@ -199,18 +213,27 @@ export default {
   padding: 0px 8px;
   border: 0.5px solid #393c41;
   border-radius: 30px;
-  width: 272px;
+  width: auto;
   margin: 2px 0px;
 }
 
 #search-input {
   outline-style: none;
   height: 100%;
-  width: 89.7%;
+  width: 272px;
   color: #fff;
   border: none;
   padding: 3px;
   background-color: transparent;
+  transition: ease-in 0.3s all;
+}
+
+#search-input:focus {
+  width: 450px;
+}
+
+#input-cover:hover {
+  border: 0.5px solid #b1b1b1;
 }
 
 #input-btn {
@@ -247,12 +270,40 @@ export default {
 }
 
 #place-holder-bnt {
-  float: right;
   height: 100%;
-  background-color: red;
+  flex: 1;
   width: 100px;
-  margin: 0px 100px;
-  display: none;
+  text-align: right;
+  padding-right: 20px;
+}
+
+#btns-one {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+  white-space: nowrap;
+}
+
+#btns-one li button {
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+  outline-style: none;
+  color: #c9d1d9;
+  height: 100%;
+  font-size: 18px;
+  word-spacing: 0px;
+}
+
+#btns-one li button img {
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+}
+
+#btns-one li button:hover {
+  color: #b1b1b1;
+  cursor: pointer;
 }
 
 #header {
@@ -301,6 +352,12 @@ export default {
   font-size: 14.5px;
   cursor: pointer;
   border-bottom: 1px solid lightgrey;
+}
+
+.active-tab {
+  color: #fff;
+  font-size: 15px;
+  border-bottom: 1px solid #fff;
 }
 
 #image-switch {
@@ -471,6 +528,7 @@ export default {
   width: 50px;
   background-color: grey;
   border-radius: 7px;
+  cursor: pointer;
 }
 
 #more-wrapper {
@@ -497,6 +555,10 @@ export default {
 
   color: #fff;
   flex: 1;
+}
+
+#find-repo-input:hover {
+  border: 0.5px solid #b1b1b1;
 }
 
 .sub-btn {
