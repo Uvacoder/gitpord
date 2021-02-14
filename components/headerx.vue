@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hero">
+    <div class="hero1">
       <div id="inner-wrapper">
         <img id="logo" src="~/static/github-logo.png" alt="boy" />
 
@@ -12,7 +12,6 @@
           />
           <button id="input-btn">/</button>
         </div>
-        
 
         <ul id="links-one">
           <li>Pull requests</li>
@@ -43,37 +42,50 @@
       <ul id="page-tabs">
         <li>
           <button>
-            <span class="mdi mdi-book-open-variant"></span> Overview
+            <span class="lix mdi mdi-book-open-variant"></span> Overview
           </button>
         </li>
 
         <li>
           <button class="active-tab">
-            <span class="mdi mdi-book-play-outline"></span> Repositories
+            <span class="lix mdi mdi-book-play-outline"></span> Repositories
           </button>
         </li>
 
         <li>
-          <button><span class="mdi mdi-graph-outline"></span> Projects</button>
+          <button>
+            <span class="lix mdi mdi-graph-outline"></span> Projects
+          </button>
         </li>
 
         <li>
           <button>
-            <span class="mdi mdi-package-variant"></span> Packages
+            <span class="lix mdi mdi-package-variant"></span> Packages
           </button>
         </li>
       </ul>
 
       <div id="image-switch"></div>
     </div>
+
+    <div class="hero2">
+      <div id="actns-wrapper">
+        <button id="menu-btn"><span class="mdi mdi-menu"></span></button>
+
+        <img id="logo" src="~/static/github-logo.png" alt="" />
+
+        <button id="alert-btn">
+          <span class="mdi mdi-bell-outline"></span>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
- mounted(){
-
-  var h = document.getElementById("header");
+  mounted() {
+    var h = document.getElementById("header");
     //  var readout = document.getElementById("readout");
     var stuck = false;
     var stickPoint = getDistance();
@@ -97,12 +109,12 @@ export default {
         stuck = false;
       }
     };
-    }
-}
+  },
+};
 </script>
 
 <style scoped>
-.hero {
+.hero1 {
   height: 63px;
   display: flex;
   align-items: center;
@@ -282,5 +294,56 @@ export default {
   right: 100px;
   bottom: 0px;
   display: none;
+}
+
+@media only screen and (min-device-width: 768px) {
+  .hero2 {
+    display: none;
+  }
+}
+
+@media only screen and (max-device-width: 767px) {
+  #header,
+  .hero1 {
+    display: none;
+  }
+
+  .hero2 {
+    width: 100%;
+    height: 63px;
+    background-color: #161b22;
+  }
+
+  #menu-btn {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    outline-style: none;
+    float: left;
+    font-size: 25px;
+    margin: 15px 10px;
+    color: #c9d1d9;
+  }
+
+  #logo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    float: left;
+    margin: 10px 5px;
+  }
+
+  #alert-btn {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    outline-style: none;
+    float: right;
+    font-size: 25px;
+    margin: 15px 10px;
+    color: #c9d1d9;
+  }
 }
 </style>

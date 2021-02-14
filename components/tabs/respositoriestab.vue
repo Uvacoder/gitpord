@@ -24,8 +24,33 @@
 
 <script>
 export default {
+  mounted() {
+    var h = document.getElementById("header");
+    //  var readout = document.getElementById("readout");
+    var stuck = false;
+    var stickPoint = getDistance();
 
-}
+    function getDistance() {
+      var topDist = h.offsetTop;
+      return topDist;
+    }
+
+    window.onscroll = function (e) {
+      var distance = getDistance() - window.pageYOffset;
+      var offset = window.pageYOffset;
+      // readout.innerHTML =
+      //   stickPoint + "   " + distance + "   " + offset + "   " + stuck;
+      if (distance <= 0 && !stuck) {
+        h.style.position = "fixed";
+        h.style.top = "0px";
+        stuck = true;
+      } else if (stuck && offset <= stickPoint) {
+        h.style.position = "static";
+        stuck = false;
+      }
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -35,6 +60,7 @@ export default {
   margin: 0px;
   display: flex;
   padding: 20px 0px;
+  
 }
 
 #find-repo-input {
@@ -85,4 +111,34 @@ export default {
   background-color: #23cc45;
   cursor: pointer;
 }
+
+
+
+ @media only screen and (max-device-width: 767px){
+
+   #more-sec-one {
+  height: auto;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0px;
+}
+
+#find-repo-input {
+flex: unset;
+width: 95%;
+margin: auto;
+}
+
+#sub-sec{
+text-align: center;
+width: 100%;
+}
+
+.sub-btn {
+  margin: 10px auto 10px auto;
+}
+
+ }
 </style>
