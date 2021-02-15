@@ -68,7 +68,7 @@
       <div id="image-switch"></div>
     </div>
 
-    <div class="hero2">
+    <div id="hero2">
       <div id="actns-wrapper">
         <button id="menu-btn"><span class="mdi mdi-menu"></span></button>
 
@@ -78,12 +78,38 @@
           <span class="mdi mdi-bell-outline"></span>
         </button>
       </div>
+      <div id="menu-extension">
+        <div id="input-cover2">
+          <input
+            type="text"
+            id="search-input2"
+            placeholder="Search or jump to..."
+          />
+          <button id="input-btn">/</button>
+        </div>
+
+        <ul id="small-navigation">
+          <li>Dashboard</li>
+          <li>Pull requests</li>
+          <li>Issues</li>
+          <li>Marketplace</li>
+          <li>Explore</li>
+          <li>Settings</li>
+          <li><img src="~/static/profile.jpg" alt="" /> Xceldeveloper</li>
+          <li><span class="mdi mdi-logout"></span> Sign out</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      showmenu: false,
+    };
+  },
   mounted() {
     var h = document.getElementById("header");
     //  var readout = document.getElementById("readout");
@@ -109,6 +135,21 @@ export default {
         stuck = false;
       }
     };
+
+    var smheader = document.getElementById("hero2");
+    var menubtn = document.getElementById("menu-btn");
+    var menucont = document.getElementById("menu-extension");
+    menubtn.addEventListener("click", () => {
+      if (!this.showmenu) {
+        this.showmenu = true;
+        smheader.style.height = "465px";
+        menucont.style.display = "block";
+      } else {
+        this.showmenu = false;
+        smheader.style.height = "63px";
+        menucont.style.display = "none";
+      }
+    });
   },
 };
 </script>
@@ -125,6 +166,7 @@ export default {
   height: 30px;
   display: flex;
   width: 100%;
+  overflow: auto;
 }
 
 #logo {
@@ -297,7 +339,7 @@ export default {
 }
 
 @media only screen and (min-device-width: 768px) {
-  .hero2 {
+  #hero2 {
     display: none;
   }
 }
@@ -308,10 +350,12 @@ export default {
     display: none;
   }
 
-  .hero2 {
+  #hero2 {
     width: 100%;
     height: 63px;
+    margin-bottom: 5px;
     background-color: #161b22;
+    transition: ease-in 0.4s all;
   }
 
   #menu-btn {
@@ -344,6 +388,57 @@ export default {
     font-size: 25px;
     margin: 15px 10px;
     color: #c9d1d9;
+  }
+
+  #menu-extension {
+    width: 100%;
+    height: 396;
+    float: left;
+    transition: ease-in 0.4s all;
+  }
+
+  #input-cover2 {
+    background-color: #0d1117;
+    height: 29px;
+    padding: 0px 8px;
+    border: 0.5px solid #393c41;
+    border-radius: 30px;
+    width: 95%;
+    margin: 2px auto;
+  }
+
+  #search-input2 {
+    outline-style: none;
+    height: 100%;
+    width: 92%;
+    color: #fff;
+    border: none;
+    padding: 3px;
+    background-color: transparent;
+  }
+
+  #small-navigation {
+    padding: 0px;
+    margin: 10px auto;
+    list-style-type: none;
+    width: 93%;
+    display: block;
+    overflow: auto;
+  }
+
+  #small-navigation li {
+    border-style: solid;
+    color: #fff;
+    font-size: 15px;
+    border-color: #747373;
+    border-width: 0.1px 0px 0.2px 0px;
+    padding: 10px 0px;
+  }
+
+  #small-navigation li img {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
   }
 }
 </style>
