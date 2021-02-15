@@ -32,13 +32,10 @@
         </div>
       </div>
 
-
-
-
-        <div class="dropdown">
+      <div class="dropdown">
         <button @click="myFunction(1)" class="sub-btn dropbtn">
           Type: <span style="color: #fff">Language</span>
-                <span class="mdi mdi-chevron-down"></span>
+          <span class="mdi mdi-chevron-down"></span>
         </button>
         <div id="myDropdown2" class="dropdown-wrapper">
           <span class="dropdown-title">Select Language</span>
@@ -54,9 +51,9 @@
         </div>
       </div>
 
-       <button id="create-repo-btn">
-                <span class="mdi mdi-book-play-outline"></span> New
-              </button>
+      <button id="create-repo-btn">
+        <span class="mdi mdi-book-play-outline"></span> New
+      </button>
     </div>
   </div>
 </template>
@@ -107,10 +104,10 @@ export default {
   },
   methods: {
     myFunction(which) {
-      if(which == 0){
-      document.getElementById("myDropdown").classList.toggle("show");
-      }else{
-         document.getElementById("myDropdown2").classList.toggle("show");
+      if (which == 0) {
+        document.getElementById("myDropdown").classList.toggle("show");
+      } else {
+        document.getElementById("myDropdown2").classList.toggle("show");
       }
     },
   },
@@ -213,11 +210,12 @@ export default {
     display: none;
     position: absolute;
     background-color: #393c41;
-    min-width: 220px;
+    min-width: 280px;
     margin: 5px 0px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
     z-index: 1;
     border-radius: 5px;
+    right: 0;
   }
 
   .dropdown-title {
