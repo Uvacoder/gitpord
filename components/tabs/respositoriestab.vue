@@ -7,7 +7,7 @@
             />
 
             <div id="sub-sec">
-              <button class="sub-btn">
+              <button class="sub-btn" @click="showB =  true">
                 Type: <span style="color: #fff">All</span>
                 <span class="mdi mdi-chevron-down"></span>
               </button>
@@ -19,11 +19,26 @@
                 <span class="mdi mdi-book-play-outline"></span> New
               </button>
             </div>
+
+
+          <!-- <customselct :canShow="showB" @close="showB = false" title="Select type" :data="['Public','Private']" :preselected="3" @onselected="getAnsa"/>
+           -->
           </div>
 </template>
 
 <script>
+import customselct from '../customselct.vue';
+
 export default {
+  components:{
+    customselct
+    
+  },
+  data(){
+    return{
+      showB:false
+    }
+  },
   mounted() {
     var h = document.getElementById("header");
     //  var readout = document.getElementById("readout");
@@ -50,10 +65,18 @@ export default {
       }
     };
   },
+  methods:{
+    getAnsa(){
+
+    }
+  }
 };
 </script>
 
 <style scoped>
+
+
+
 #more-sec-one {
   height: auto;
   width: 100%;
