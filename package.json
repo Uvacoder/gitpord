@@ -12,6 +12,7 @@
     "@nuxtjs/axios": "^5.12.5",
     "core-js": "^3.8.3",
     "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "nuxt": "^2.14.12",
     "vue-chartjs": "^3.5.1",
     "vue-moment": "^4.1.0"
