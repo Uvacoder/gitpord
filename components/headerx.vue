@@ -42,25 +42,25 @@
       <ul id="page-tabs">
         <li>
           <button class="tabb">
-            <span class=" mdi mdi-book-open-variant"></span> Overview
+            <span class="mdi mdi-book-open-variant"></span> Overview
           </button>
         </li>
 
         <li>
           <button class="tabb active-tab">
-            <span class=" mdi mdi-book-play-outline"></span> Repositories
+            <span class="mdi mdi-book-play-outline"></span> Repositories
           </button>
         </li>
 
         <li>
           <button class="tabb">
-            <span class=" mdi mdi-graph-outline"></span> Projects
+            <span class="mdi mdi-graph-outline"></span> Projects
           </button>
         </li>
 
         <li>
           <button class="tabb">
-            <span class=" mdi mdi-package-variant"></span> Packages
+            <span class="mdi mdi-package-variant"></span> Packages
           </button>
         </li>
       </ul>
