@@ -59,15 +59,30 @@
       <br />
     </div>
 
-    <div class="repo-cover" v-for="(repo,index) in repox" :key="index"> 
+    <div v-if="errorLoading && !loading" id="error-wrapper" @click="getRepos">
+      Error Loading repositories tap to retry
+    </div>
+    <div class="repo-cover" v-for="(repo, index) in repox" :key="index">
       <div class="inner-rep-cover">
         <div class="text-cover">
-          <span class="repo-name"><a :href="repo.html_url">{{repo.name}}</a></span
+          <span class="repo-name"
+            ><a :href="repo.html_url">{{ repo.name }}</a></span
           ><br v-if="repo.description != null" />
-          <span  v-if="repo.description != null" class="repo-desc">{{repo.description}}</span
+          <span v-if="repo.description != null" class="repo-desc">{{
+            repo.description
+          }}</span
           ><br />
           <span class="repo-datex">
-           <b>{{repo.language}}</b> <span v-if="repo.watchers > 0"><span class="mdi mdi-star-outline"></span> {{repo.watchers}}</span> <span v-if="repo.forks > 0"><span class="mdi mdi-fork"></span> {{repo.forks}}</span> Updated on  {{formatRepoTime(moment,repo.updated_at,true,false)}} 
+            <b>{{ repo.language }}</b>
+            <span v-if="repo.watchers > 0"
+              ><span class="mdi mdi-star-outline"></span>
+              {{ repo.watchers }}</span
+            >
+            <span v-if="repo.forks > 0"
+              ><span class="mdi mdi-fork"></span> {{ repo.forks }}</span
+            >
+            Updated on
+            {{ formatRepoTime(moment, repo.updated_at, true, false) }}
           </span>
         </div>
       </div>
@@ -80,8 +95,10 @@ const moment = require("moment-timezone");
 export default {
   data() {
     return {
-        moment: moment,
-      repositories:[]
+      moment: moment,
+      repositories: [],
+      errorLoading: false,
+      loading: false,
     };
   },
   mounted() {
@@ -121,8 +138,6 @@ export default {
           }
         }
       }
-
-      
     };
 
     this.getRepos();
@@ -136,17 +151,22 @@ export default {
       }
     },
 
-    getRepos(){
-      this.$axios.$get("https://api.github.com/users/xceldeveloper/repos?per_page=100").then(res=>{
-         this.repositories = res
-         console.log(res)
-      })
+    getRepos() {
+      this.loading = true;
+      this.errorLoading = false;
+      this.$axios
+        .$get("https://api.github.com/users/xceldeveloper/repos?per_page=100")
+        .then((res) => {
+          this.repositories = res;
+          this.loading = false;
+        })
+        .catch((err) => {
+          this.loading = false;
+          this.errorLoading = true;
+        });
     },
 
-
-
-
-        formatRepoTime(moment, date, withOutSuffix = false, limited = false) {
+    formatRepoTime(moment, date, withOutSuffix = false, limited = false) {
       var result;
       if (date == "") {
         date = new Date().toISOString();
@@ -154,13 +174,16 @@ export default {
       var timezone = moment.tz.guess(),
         convertedTime = moment(date).tz(timezone),
         xdate = moment(convertedTime).calendar(null, {
-          lastDay: limited ? 'dd, LT' : '[Yesterday at] LT',
-          lastWeek: limited ? 'MMM D, LT' : '[Last] dddd [at] LT',
-          sameElse: limited ? 'MMM D, YYYY ' : " MMM D, YYYY ",
+          lastDay: limited ? "dd, LT" : "[Yesterday at] LT",
+          lastWeek: limited ? "MMM D, LT" : "[Last] dddd [at] LT",
+          sameElse: limited ? "MMM D, YYYY " : " MMM D, YYYY ",
         });
       var isToday = /Today/.test(xdate);
       if (isToday) {
-        var t = moment(convertedTime).from(new Date().toISOString(), withOutSuffix);
+        var t = moment(convertedTime).from(
+          new Date().toISOString(),
+          withOutSuffix
+        );
         var jesNow = /a few seconds ago|a few seconds/.test(t);
         var isSec = /seconds/.test(t);
 
@@ -169,14 +192,16 @@ export default {
 
         var isHour = /hour|hours/.test(t),
           oneHour = /1 hour/.test(t);
-        t = jesNow ? 'Just now' : t;
+        t = jesNow ? "Just now" : t;
         if (limited) {
           if (isHour) {
-            t = oneHour ? t.replace(/hour/, 'hr') : t.replace(/hours/, 'hrs');
+            t = oneHour ? t.replace(/hour/, "hr") : t.replace(/hours/, "hrs");
           } else if (isMin) {
-            t = oneMin ? t.replace(/minute/, 'min') : t.replace(/minutes/, 'mins');
+            t = oneMin
+              ? t.replace(/minute/, "min")
+              : t.replace(/minutes/, "mins");
           } else if (isSec && !jesNow) {
-            t = t.replace(/seconds/, 'secs');
+            t = t.replace(/seconds/, "secs");
           }
         }
         result = t;
@@ -185,17 +210,21 @@ export default {
       }
       return result;
     },
-
   },
-  computed:{
-    repox(){
-       return this.repositories.sort((a,b)=>{
-      return  moment(a.updated_at).format('YYYYMMDD') - moment(b.updated_at).format('YYYYMMDD');
+  computed: {
+    repox() {
+      return this.repositories
+        .sort((a, b) => {
+          return (
+            moment(a.updated_at).format("YYYYMMDD") -
+            moment(b.updated_at).format("YYYYMMDD")
+          );
 
           // return this.commenters;
-       }).reverse();
-    }
-  }
+        })
+        .reverse();
+    },
+  },
 };
 </script>
 
@@ -479,5 +508,14 @@ export default {
   border: 0.5px solid #c9d1d9;
   padding: 6.5px 14.5px;
   cursor: pointer;
+}
+
+#error-wrapper {
+  width: 100%;
+  padding: 30px 0px;
+  text-align: center;
+  color: cornflowerblue;
+  cursor: pointer;
+  margin-top: 200px;
 }
 </style>
