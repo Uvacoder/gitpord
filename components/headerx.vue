@@ -393,6 +393,7 @@ export default {
   #menu-extension {
     width: 100%;
     height: 396;
+    display: none;
     float: left;
     transition: ease-in 0.4s all;
   }
