@@ -106,7 +106,7 @@ export default {
   color: #c9d1d9;
   background-color: #393c41;
   border: none;
-  padding: 9px 10px;
+  padding: 7px 10px;
   font-size: 12px;
   outline-style: none;
   margin: 0px 0px 0px 10px;
@@ -123,7 +123,7 @@ export default {
   background-color: #238636;
   color: #fff;
   border: none;
-  padding: 9px 10px;
+  padding: 7px 10px;
   font-size: 12px;
   outline-style: none;
   margin: 0px 0px 0px 10px;

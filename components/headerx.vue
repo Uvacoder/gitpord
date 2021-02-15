@@ -163,7 +163,7 @@ export default {
   background-color: #161b22;
 }
 #inner-wrapper {
-  height: 30px;
+  height: 34px;
   display: flex;
   width: 100%;
   overflow: auto;
