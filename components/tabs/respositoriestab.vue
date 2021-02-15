@@ -1,9 +1,10 @@
 <template>
-  <div id="more-sec-one">
-    <input type="text" id="find-repo-input" placeholder="Find a repository" />
+  <div id="containerx">
+    <div id="more-sec-one">
+      <input type="text" id="find-repo-input" placeholder="Find a repository" />
 
-    <div id="sub-sec">
-      <!-- <button class="sub-btn" @click="showB =  true">
+      <div id="sub-sec">
+        <!-- <button class="sub-btn" @click="showB =  true">
                 Type: <span style="color: #fff">All</span>
                 <span class="mdi mdi-chevron-down"></span>
               </button>
@@ -13,47 +14,63 @@
               </button>
               -->
 
-      <div class="dropdown">
-        <button @click="myFunction(0)" class="sub-btn dropbtn">
-          Type: <span style="color: #fff">All</span>
-          <span class="mdi mdi-chevron-down"></span>
+        <div class="dropdown">
+          <button @click="showFcunction(0)" class="sub-btn dropbtn">
+            Type: <span style="color: #fff">All</span>
+            <span class="mdi mdi-chevron-down"></span>
+          </button>
+          <div id="myDropdown" class="dropdown-wrapper">
+            <span class="dropdown-title">Select type</span>
+            <ul id="dropdown-content">
+              <li>All</li>
+              <li>Public</li>
+              <li>Private</li>
+              <li>Sources</li>
+              <li>Forks</li>
+              <li>Archived</li>
+              <li>Mirrors</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button @click="showFcunction(1)" class="sub-btn dropbtn">
+            Type: <span style="color: #fff">Language</span>
+            <span class="mdi mdi-chevron-down"></span>
+          </button>
+          <div id="myDropdown2" class="dropdown-wrapper">
+            <span class="dropdown-title">Select Language</span>
+            <ul id="dropdown-content">
+              <li>All</li>
+              <li>Vue</li>
+              <li>Dart</li>
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+              <li>HTML</li>
+              <li>Python</li>
+            </ul>
+          </div>
+        </div>
+
+        <button id="create-repo-btn">
+          <span class="mdi mdi-book-play-outline"></span> New
         </button>
-        <div id="myDropdown" class="dropdown-wrapper">
-          <span class="dropdown-title">Select type</span>
-          <ul id="dropdown-content">
-            <li>All</li>
-            <li>Public</li>
-            <li>Private</li>
-            <li>Sources</li>
-            <li>Forks</li>
-            <li>Archived</li>
-            <li>Mirrors</li>
-          </ul>
+      </div>
+      <br />
+    </div>
+
+    <div class="repo-cover">
+      <div class="inner-rep-cover">
+        <div class="text-cover">
+          <span class="repo-name"><a href="">gitpord</a></span
+          ><br />
+          <span class="repo-desc">My custom github repositories page</span
+          ><br />
+          <span class="repo-datex">
+            <pre><b>Vue</b>   Update 25days ago</pre>
+          </span>
         </div>
       </div>
-
-      <div class="dropdown">
-        <button @click="myFunction(1)" class="sub-btn dropbtn">
-          Type: <span style="color: #fff">Language</span>
-          <span class="mdi mdi-chevron-down"></span>
-        </button>
-        <div id="myDropdown2" class="dropdown-wrapper">
-          <span class="dropdown-title">Select Language</span>
-          <ul id="dropdown-content">
-            <li>All</li>
-            <li>Vue</li>
-            <li>Dart</li>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>HTML</li>
-            <li>Python</li>
-          </ul>
-        </div>
-      </div>
-
-      <button id="create-repo-btn">
-        <span class="mdi mdi-book-play-outline"></span> New
-      </button>
     </div>
   </div>
 </template>
@@ -103,7 +120,7 @@ export default {
     };
   },
   methods: {
-    myFunction(which) {
+    showFcunction(which) {
       if (which == 0) {
         document.getElementById("myDropdown").classList.toggle("show");
       } else {
@@ -133,6 +150,10 @@ export default {
 
   color: #fff;
   flex: 1;
+}
+
+#sub-sec {
+  display: block;
 }
 
 #find-repo-input:hover {
@@ -179,7 +200,7 @@ export default {
     margin: 0px;
     display: flex;
     flex-direction: column;
-    padding: 20px 0px;
+    padding: 10px 0px 0px 0px;
   }
 
   #find-repo-input {
@@ -247,6 +268,16 @@ export default {
   #dropdown-content li:hover {
     background-color: rgba(0, 0, 0, 0.4);
   }
+
+  .repo-cover {
+    display: block;
+    height: auto;
+    width: 100%;
+    margin: auto;
+    border-style: groove;
+    border-color: #b1b1b1;
+    border-width: 0.1px 0px 0.1px 0px;
+  }
 }
 
 @media only screen and (max-device-width: 767px) {
@@ -303,5 +334,82 @@ export default {
   #dropdown-content li:hover {
     background-color: rgba(0, 0, 0, 0.4);
   }
+
+  .repo-cover {
+    display: block;
+    height: auto;
+    width: 100%;
+    margin: auto;
+    border-style: groove;
+    border-color: #b1b1b1;
+    border-width: 0.1px 0px 0.1px 0px;
+  }
+}
+
+.inner-rep-cover {
+  height: auto;
+  width: 100%;
+  margin: 25px 0px;
+  display: flex;
+}
+
+.text-cover {
+  flex: 1;
+}
+
+.actn-cover {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.repo-name {
+  font-weight: bold;
+
+  font-size: 21px;
+  display: inline-block;
+  padding: 5px 0px 3px 0px;
+  cursor: pointer;
+}
+
+.repo-name a {
+  color: #47a6ff;
+  text-decoration: none;
+}
+
+.repo-name a:hover {
+  text-decoration: underline;
+}
+
+.repo-desc {
+  color: #b1b1b1;
+  display: inline-block;
+  font-size: 14px;
+  padding: 5px 0px 3px 0px;
+}
+
+.repo-datex {
+  color: #b1b1b1;
+  display: block;
+  padding: 12px 0px;
+  font-size: 14px;
+}
+
+.star-repo-btn {
+  color: #c9d1d9;
+  background-color: #393c41;
+  border: none;
+  padding: 7px 15px;
+  font-size: 15px;
+  outline-style: none;
+  margin: 0px 0px 0px 10px;
+  border-radius: 20px;
+}
+
+.star-repo-btn:hover {
+  border: 0.5px solid #c9d1d9;
+  padding: 6.5px 14.5px;
+  cursor: pointer;
 }
 </style>

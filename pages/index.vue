@@ -98,7 +98,7 @@ export default {
 }
 
 #over-all-wrapper {
-  min-height: 300vh;
+  min-height: 100vh;
 }
 
 #user-details-wrapper {
