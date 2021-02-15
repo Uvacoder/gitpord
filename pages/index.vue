@@ -28,10 +28,18 @@
                 style="color: #616972"
                 class="mdi mdi-account-supervisor-outline"
               ></span>
-              <span style="color: #c9d1d9">34</span> followers
+              <span style="color: #c9d1d9">34</span>
+              <a href="https://github.com/Xceldeveloper?tab=followers"
+                >followers</a
+              >
             </li>
             <li><span class="dix"></span></li>
-            <li><span style="color: #c9d1d9">11</span> following</li>
+            <li>
+              <span style="color: #c9d1d9">11</span>
+              <a href="https://github.com/Xceldeveloper?tab=following"
+                >following</a
+              >
+            </li>
             <li><span class="dix"></span></li>
             <li>
               <span style="color: #616972" class="mdi mdi-star-outline"></span>
@@ -41,12 +49,12 @@
 
           <ul id="user-external-links">
             <li>
-              <a href="#"
+              <a href="https://xceldeveloper.com"
                 ><span class="mdi mdi-link"></span> xceldeveloper.com</a
               >
             </li>
             <li>
-              <a href="#"
+              <a href="https://twitter.com/xceldeveloper"
                 ><span class="mdi mdi-twitter"></span> @xceldeveloper</a
               >
             </li>
@@ -174,7 +182,7 @@ export default {
 #user-internal-links {
   list-style-type: none;
   padding: 0px;
-  margin: 0px 7.5%;
+  margin: 0px 5%;
 
   display: flex;
   align-items: center;
@@ -184,11 +192,17 @@ export default {
 #user-internal-links li {
   color: #616972;
   display: inline-block;
+  font-size: 15px;
 }
 
-#user-internal-links li:hover {
+#user-internal-links li a:hover {
   color: cornflowerblue;
   cursor: pointer;
+}
+
+#user-internal-links li a {
+  text-decoration: none;
+  color: #616972;
 }
 
 .dix {
