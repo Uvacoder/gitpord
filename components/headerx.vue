@@ -41,26 +41,26 @@
       <div id="clear"></div>
       <ul id="page-tabs">
         <li>
-          <button>
-            <span class="lix mdi mdi-book-open-variant"></span> Overview
+          <button class="tabb">
+            <span class=" mdi mdi-book-open-variant"></span> Overview
           </button>
         </li>
 
         <li>
-          <button class="active-tab">
-            <span class="lix mdi mdi-book-play-outline"></span> Repositories
+          <button class="tabb active-tab">
+            <span class=" mdi mdi-book-play-outline"></span> Repositories
           </button>
         </li>
 
         <li>
-          <button>
-            <span class="lix mdi mdi-graph-outline"></span> Projects
+          <button class="tabb">
+            <span class=" mdi mdi-graph-outline"></span> Projects
           </button>
         </li>
 
         <li>
-          <button>
-            <span class="lix mdi mdi-package-variant"></span> Packages
+          <button class="tabb">
+            <span class=" mdi mdi-package-variant"></span> Packages
           </button>
         </li>
       </ul>
@@ -304,7 +304,7 @@ export default {
   width: 25%;
 }
 
-#page-tabs li button {
+.tabb {
   background: transparent;
   color: #616972;
   height: 35px;
@@ -315,7 +315,7 @@ export default {
   outline-style: none;
 }
 
-#page-tabs li button:hover {
+.tabb:hover {
   color: #c9d1d9;
   font-size: 14.5px;
   cursor: pointer;
