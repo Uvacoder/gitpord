@@ -1,6 +1,7 @@
 # gitpord
 
-## Build Setup
+Github profile page clone...
+[Demo](https://xcelgit.netlify.app/).
 
 ```bash
 # install dependencies

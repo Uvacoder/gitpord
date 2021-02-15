@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'gitpord',
+    title: 'github profile clone by xceldeveloper',
     htmlAttrs: {
       lang: 'en'
     },
