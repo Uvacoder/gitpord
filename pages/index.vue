@@ -26,8 +26,8 @@
 
           <button id="edit-profile-btn">Edit profile</button>
 
-          <ul id="user-internal-links">
-            <li>
+          <ul id="user-internal-links" v-if="followers_count > 0 || following_count > 0">
+            <li v-if="followers_count > 0">
               <span
                 style="color: #616972"
                 class="mdi mdi-account-supervisor-outline"
@@ -35,17 +35,16 @@
               <span style="color: #c9d1d9">{{ followers_count }}</span>
               <a
                 :href="
-                  'https://api.github.com/users/' +
-                  url.followers_url +
-                  '/followers'
+                 
+                  'https://github.com/'+username+'?tab=followers'
                 "
                 >followers</a
               >
             </li>
-            <li><span class="dix"></span></li>
-            <li>
+            <li><span class="dix" v-if="following_count > 0"></span></li>
+            <li v-if="following_count > 0">
               <span style="color: #c9d1d9">{{ following_count }}</span>
-              <a :href="following_url">following</a>
+              <a :href="  'https://github.com/'+username+'?tab=following'">following</a>
             </li>
             <!-- <li><span class="dix"></span></li> -->
             <!-- <li>
@@ -105,7 +104,7 @@
 
     <div id="footer">
       <span class="full-year"
-        ><span class="mdi mdi-copyright"></span> xceldeveloper
+        ><span class="mdi mdi-copyright"></span> <a href="https://xceldeveloper.com">xceldeveloper</a>
         {{ new Date().getFullYear() }}</span
       >
     </div>
@@ -474,5 +473,10 @@ export default {
   align-items: center;
   justify-content: center;
   color: #fff;
+}
+
+.full-year a{
+  color: #fff;
+  text-decoration: none;
 }
 </style>
