@@ -3,6 +3,8 @@
 Github profile page clone...
 [Demo](https://xcelgit.netlify.app/).
 
+http://xcelgit.netlify.app/?username=**yourvalue**
+
 ```bash
 # install dependencies
 $ npm install
