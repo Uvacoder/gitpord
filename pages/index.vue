@@ -7,7 +7,7 @@
         <div id="user-details-wrapper">
           <div id="polifix-wrapper">
             <div id="profile-pic-wrapper" v-if="avatar != ''">
-              <a :href="url.profile">
+              <a :href="'https://github.com/'+username">
                 <img id="avatar" :src="avatar" :alt="username"
               /></a>
               <button id="set-status-btn">
@@ -78,9 +78,9 @@
             </li>
           </ul>
           <br />
-          <div id="divider"></div>
+          <!-- <div id="divider"></div>
 
-          <span id="organizations-title">Organizations</span>
+          <span id="organizations-title">Organizations</span> -->
           <ul id="organization-badge">
             <li>
               <img src="~/static/organizationimage.png" />
@@ -335,7 +335,7 @@ export default {
 
 #organizations-title {
   color: #c9d1d9;
-  display: block;
+  display: none;
   padding: 10px 0px 5px 7.5%;
 }
 
@@ -346,6 +346,7 @@ export default {
   white-space: nowrap;
   overflow: auto;
   margin: 0px 7.5%;
+  display: none;
 }
 
 #organization-badge li {
