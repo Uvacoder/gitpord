@@ -81,9 +81,14 @@
             <span v-if="repo.forks > 0"
               ><span class="mdi mdi-fork"></span> {{ repo.forks }}</span
             >
-            Updated 
+            Updated
             {{ formatRepoTime(moment, repo.updated_at, true, false) }}
           </span>
+        </div>
+        <div class="actn-cover">
+          <button class="star-repo-btn">
+            <span class="mdi mdi-star-outline"></span> Star
+          </button>
         </div>
       </div>
     </div>
