@@ -78,9 +78,7 @@
               ><span class="mdi mdi-star-outline"></span>
               {{ repo.watchers }}</span
             >
-            <span v-if="repo.forks > 0"
-              ><span class="mdi mdi-fork"></span> {{ repo.forks }}</span
-            >
+
             Updated
             {{ formatRepoTime(moment, repo.updated_at, true, false) }}
           </span>
@@ -98,6 +96,11 @@
 <script>
 const moment = require("moment-timezone");
 export default {
+  props: {
+    username: {
+      default: "",
+    },
+  },
   data() {
     return {
       moment: moment,
@@ -160,7 +163,11 @@ export default {
       this.loading = true;
       this.errorLoading = false;
       this.$axios
-        .$get("https://api.github.com/users/xceldeveloper/repos?per_page=100")
+        .$get(
+          "https://api.github.com/users/" +
+            this.username +
+            "/repos?per_page=100"
+        )
         .then((res) => {
           this.repositories = res;
           this.loading = false;

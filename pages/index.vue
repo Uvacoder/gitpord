@@ -6,14 +6,18 @@
       <div id="content-wrapper">
         <div id="user-details-wrapper">
           <div id="polifix-wrapper">
-            <div id="profile-pic-wrapper">
-              <img id="avatar" src="~/static/profile.jpg" alt="boy" />
+            <div id="profile-pic-wrapper" v-if="avatar != ''">
+              <a :href="url.profile">
+                <img id="avatar" :src="avatar" :alt="username"
+              /></a>
               <button id="set-status-btn">
                 <span class="mdi mdi-emoticon-excited-outline"></span>
               </button>
             </div>
 
-            <span id="user-name">Xceldeveloper</span>
+            <span id="name">{{ name }}</span>
+            <span id="user-name">{{ username }}</span>
+            <span id="user-bio"> {{ bio }}</span>
           </div>
 
           <button id="set-stat-btn2">
@@ -28,34 +32,49 @@
                 style="color: #616972"
                 class="mdi mdi-account-supervisor-outline"
               ></span>
-              <span style="color: #c9d1d9">34</span>
-              <a href="https://github.com/Xceldeveloper?tab=followers"
+              <span style="color: #c9d1d9">{{ followers_count }}</span>
+              <a
+                :href="
+                  'https://api.github.com/users/' +
+                  url.followers_url +
+                  '/followers'
+                "
                 >followers</a
               >
             </li>
             <li><span class="dix"></span></li>
             <li>
-              <span style="color: #c9d1d9">11</span>
-              <a href="https://github.com/Xceldeveloper?tab=following"
-                >following</a
-              >
+              <span style="color: #c9d1d9">{{ following_count }}</span>
+              <a :href="following_url">following</a>
             </li>
-            <li><span class="dix"></span></li>
-            <li>
+            <!-- <li><span class="dix"></span></li> -->
+            <!-- <li>
               <span style="color: #616972" class="mdi mdi-star-outline"></span>
               <span style="color: #c9d1d9">11</span>
-            </li>
+            </li> -->
           </ul>
 
           <ul id="user-external-links">
-            <li>
-              <a href="https://xceldeveloper.com"
-                ><span class="mdi mdi-link"></span> xceldeveloper.com</a
+            <li v-if="company != null">
+              <span class="mdi mdi-office-building"></span> {{ company }}
+            </li>
+            <li v-if="location != null">
+              <span class="mdi mdi-map-marker"></span> {{ location }}
+            </li>
+            <li v-if="email != null">
+              <span class="mdi mdi-email"></span> {{ email }}
+            </li>
+
+            <li v-if="blog != ''">
+              <a :href="'http://' + blog"
+                ><span class="mdi mdi-link"></span> {{ blog }}</a
               >
             </li>
-            <li>
-              <a href="https://twitter.com/xceldeveloper"
-                ><span class="mdi mdi-twitter"></span> @xceldeveloper</a
+            <li v-if="twitter_username != ''">
+              <a :href="'https://twitter.com/' + twitter_username"
+                ><span class="mdi mdi-twitter"></span> @{{
+                  twitter_username
+                }}</a
               >
             </li>
           </ul>
@@ -65,13 +84,13 @@
           <span id="organizations-title">Organizations</span>
           <ul id="organization-badge">
             <li>
-                 <img id="avatar" src="~/static/organizationimage.png" />
+              <img src="~/static/organizationimage.png" />
             </li>
             <li>
-                 <img id="avatar" src="~/static/organizationimage.png"  />
+              <img src="~/static/organizationimage.png" />
             </li>
             <li>
-                 <img id="avatar" src="~/static/organizationimage.png"  />
+              <img src="~/static/organizationimage.png" />
             </li>
           </ul>
 
@@ -79,16 +98,16 @@
         </div>
 
         <div id="more-wrapper">
-          <respositoriestab />
+          <respositoriestab v-if="username != ''" :username="username" />
         </div>
       </div>
     </div>
 
-
     <div id="footer">
- <span class="full-year"
-          ><span class="mdi mdi-copyright"></span> xceldeveloper
-          {{ new Date().getFullYear() }}</span>
+      <span class="full-year"
+        ><span class="mdi mdi-copyright"></span> xceldeveloper
+        {{ new Date().getFullYear() }}</span
+      >
     </div>
   </div>
 </template>
@@ -103,7 +122,52 @@ export default {
     respositoriestab,
     tabmenu,
   },
-  mounted() {},
+  data() {
+    return {
+      name: "",
+      username: "",
+      avatar: "",
+      followers_count: "",
+      following_count: "",
+      twitter_username: "",
+      company: null,
+      location: null,
+      email: null,
+      bio: null,
+      blog: "",
+      url: {
+        followers: "",
+        following: "",
+        profile: "",
+      },
+    };
+  },
+  mounted() {
+    this.getUserDetails(this.$route.query.username);
+  },
+  methods: {
+    getUserDetails(name) {
+      this.username = name == undefined ? "xceldeveloper" : name;
+      this.$axios
+        .$get("https://api.github.com/users/" + this.username)
+        .then((res) => {
+          this.name = res.name;
+          this.username = res.login;
+          (this.avatar = res.avatar_url),
+            (this.followers_count = res.followers);
+          this.following_count = res.following;
+          this.twitter_username = res.twitter_username;
+          this.company = res.company;
+          this.location = res.company;
+          this.email = res.email;
+          this.bio = res.bio;
+          this.blog = res.blog;
+          this.url.profile = res.url;
+          this.url.followers = res.followers_url;
+          this.url.following = res.following_url;
+        });
+    },
+  },
 };
 </script>
 
@@ -145,6 +209,9 @@ export default {
 #avatar {
   width: 100%;
   height: 100%;
+  min-height: 100px;
+  min-width: 100px;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -168,10 +235,25 @@ export default {
   cursor: pointer;
 }
 
+#name {
+  display: block;
+  font-size: 24px;
+  color: #c9d1d9;
+  padding: 0px 7.5%;
+  font-weight: bold;
+}
+
 #user-name {
   display: block;
   font-size: 20px;
   color: #616972;
+  padding: 2px 7.5%;
+}
+
+#user-bio {
+  display: block;
+  font-size: 20px;
+  color: #c9d1d9;
   padding: 5px 7.5%;
 }
 
@@ -196,10 +278,6 @@ export default {
   list-style-type: none;
   padding: 0px;
   margin: 0px 5%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 #user-internal-links li {
@@ -219,8 +297,9 @@ export default {
 }
 
 .dix {
-  height: 7px;
-  width: 7px;
+  height: 3px;
+  width: 3px;
+  border-radius: 50%;
   display: block;
   margin: 0px 6px;
   background-color: #fff;
@@ -280,7 +359,7 @@ export default {
   cursor: pointer;
 }
 
-#organization-badge li img{
+#organization-badge li img {
   height: 100%;
   width: 100%;
   border-radius: 7px;
@@ -386,15 +465,14 @@ export default {
   }
 }
 
-#footer{
+#footer {
   height: 100px;
   width: 90%;
   margin: auto;
   border-top: 1px groove #616972;
-   display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-
 }
 </style>
