@@ -435,7 +435,7 @@ export default {
   .repo-cover {
     display: block;
     height: auto;
-    width: 100%;
+    width: 93%;
     margin: auto;
     border-style: groove;
     border-color: #b1b1b1;

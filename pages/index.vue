@@ -64,9 +64,15 @@
 
           <span id="organizations-title">Organizations</span>
           <ul id="organization-badge">
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>
+                 <img id="avatar" src="~/static/organizationimage.png" />
+            </li>
+            <li>
+                 <img id="avatar" src="~/static/organizationimage.png"  />
+            </li>
+            <li>
+                 <img id="avatar" src="~/static/organizationimage.png"  />
+            </li>
           </ul>
 
           <tabmenu />
@@ -76,6 +82,13 @@
           <respositoriestab />
         </div>
       </div>
+    </div>
+
+
+    <div id="footer">
+ <span class="full-year"
+          ><span class="mdi mdi-copyright"></span> xceldeveloper
+          {{ new Date().getFullYear() }}</span>
     </div>
   </div>
 </template>
@@ -267,6 +280,12 @@ export default {
   cursor: pointer;
 }
 
+#organization-badge li img{
+  height: 100%;
+  width: 100%;
+  border-radius: 7px;
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1000px) {
   #over-all-wrapper {
     width: 100%;
@@ -365,5 +384,17 @@ export default {
     text-align: left;
     padding: 10px;
   }
+}
+
+#footer{
+  height: 100px;
+  width: 90%;
+  margin: auto;
+  border-top: 1px groove #616972;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+
 }
 </style>
