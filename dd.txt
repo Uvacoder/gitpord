@@ -1,0 +1,277 @@
+{
+  viewer {
+    login
+    name
+    company
+    url
+    websiteUrl
+    twitterUsername
+    location
+    avatarUrl
+    bio
+    starredRepositories {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+    repositories(first: 20, affiliations: [OWNER, COLLABORATOR, ORGANIZATION_MEMBER]) {
+      totalCount
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      nodes {
+        name
+        url
+        stargazerCount
+        description
+        updatedAt
+        forkCount
+        primaryLanguage {
+          name
+          color
+          id
+        }
+      }
+    }
+    email
+    following {
+      totalCount
+    }
+    watching {
+      totalCount
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+query MyQuery {
+  viewer {
+    login
+    name
+    company
+    url
+    websiteUrl
+    twitterUsername
+    location
+    avatarUrl
+    bio
+    email
+    watching {
+      totalCount
+    }
+    followers {
+      totalCount
+    }
+        following {
+      totalCount
+    }
+    repositories(first: 20, affiliations: [OWNER, COLLABORATOR]) {
+      totalCount
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      nodes {
+        name
+        url
+        stargazerCount
+        description
+        updatedAt
+        forkCount
+        primaryLanguage {
+          name
+          color
+          id
+        }
+        watchers {
+          totalCount
+        }
+      }
+    }
+
+    isGitHubStar
+    isViewer
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+query MyQuery {
+  viewer {
+    login
+    name
+    company
+    url
+    websiteUrl
+    twitterUsername
+    location
+    avatarUrl
+    bio
+    email
+        isGitHubStar
+    isViewer
+    isBountyHunter
+    isCampusExpert
+    isDeveloperProgramMember
+    isEmployee
+    isHireable
+    watching {
+      totalCount
+    }
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    repositories(first: 20, affiliations: [OWNER, COLLABORATOR], orderBy: {field: UPDATED_AT, direction: DESC}) {
+      totalCount
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      nodes {
+        name
+        url
+        stargazerCount
+        description
+        updatedAt
+        forkCount
+        primaryLanguage {
+          name
+          color
+          id
+        }
+        watchers {
+          totalCount
+        }
+        licenseInfo {
+          nickname
+          name
+          url
+        }
+      }
+    }
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+query MyQuery {
+  user(login: "xceldeveloper") {
+    avatarUrl
+    bio
+    company
+    email
+    twitterUsername
+    url
+    websiteUrl
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    isGitHubStar
+    isEmployee
+    isDeveloperProgramMember
+    isCampusExpert
+    isBountyHunter
+    isHireable
+    isSiteAdmin
+    isSponsoringViewer
+    isViewer
+    location
+    name
+    organizations {
+      totalCount
+    }
+    repositories(first: 20, affiliations: [OWNER, COLLABORATOR, ORGANIZATION_MEMBER], orderBy: {field: UPDATED_AT, direction: DESC}) {
+      totalCount
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      nodes {
+        name
+        url
+        stargazerCount
+        description
+        updatedAt
+        forkCount
+        primaryLanguage {
+          name
+          color
+          id
+        }
+        viewerHasStarred
+        viewerCanSubscribe
+        stargazers {
+          totalCount
+        }
+        homepageUrl
+        licenseInfo {
+          nickname
+          name
+          permissions {
+            label
+          }
+          url
+        }
+      }
+    }
+    status {
+      emoji
+      message
+    }
+    viewerIsSponsoring
+    viewerIsFollowing
+    viewerCanSponsor
+    viewerCanFollow
+    viewerCanCreateProjects
+    viewerCanChangePinnedItems
+    watching {
+      totalCount
+    }
+  }
+}

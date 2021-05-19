@@ -80,7 +80,16 @@
             >
 
             Updated
-            {{ formatRepoTime(moment, repo.updated_at, true, false) }}
+            <!-- {{ formatRepoTime(moment, repo.updated_at, true, false) }} -->
+
+            {{
+              
+         formatTime(moment,repo.updated_at)
+        
+        }}
+           
+
+
           </span>
         </div>
         <div class="actn-cover">
@@ -178,50 +187,28 @@ export default {
         });
     },
 
-    formatRepoTime(moment, date, withOutSuffix = false, limited = false) {
-      var result;
-      if (date == "") {
-        date = new Date().toISOString();
-      }
-      var timezone = moment.tz.guess(),
-        convertedTime = moment(date).tz(timezone),
-        xdate = moment(convertedTime).calendar(null, {
-          lastDay: limited ? "dd, LT" : "[Yesterday at] LT",
-          lastWeek: limited ? "MMM D, LT" : "[Last] dddd [at] LT",
-          sameElse: limited ? "MMM D, YYYY " : " MMM D, YYYY ",
-        });
-      var isToday = /Today/.test(xdate);
-      if (isToday) {
-        var t = moment(convertedTime).from(
-          new Date().toISOString(),
-          withOutSuffix
+    formatTime(moment,date){
+      var t =   moment(date).from(
+          new Date().toISOString()
         );
-        var jesNow = /a few seconds ago|a few seconds/.test(t);
-        var isSec = /seconds/.test(t);
 
-        var isMin = /minutes|minute/.test(t),
-          oneMin = /a minute/.test(t);
+         var isMOnth = /month|months/.test(t);
+         var limited = false;
 
-        var isHour = /hour|hours/.test(t),
-          oneHour = /1 hour/.test(t);
-        t = jesNow ? "Just now" : t;
-        if (limited) {
-          if (isHour) {
-            t = oneHour ? t.replace(/hour/, "hr") : t.replace(/hours/, "hrs");
-          } else if (isMin) {
-            t = oneMin
-              ? t.replace(/minute/, "min")
-              : t.replace(/minutes/, "mins");
-          } else if (isSec && !jesNow) {
-            t = t.replace(/seconds/, "secs");
-          }
-        }
-        result = t;
-      } else {
-        result = xdate;
-      }
-      return result;
-    },
+         if(isMOnth){
+           return "on " + moment(date).calendar(null, {
+          lastDay:  "dd, LT",
+          lastWeek: "MMM D",
+          sameElse:  "MMM D ",
+        });
+         }else{
+           return t;
+         }
+
+
+
+
+    }
   },
   computed: {
     repox() {
@@ -237,6 +224,11 @@ export default {
         .reverse();
     },
   },
+  watch:{
+    repositories(val){
+      console.log(JSON.stringify(val,null,2));
+    }
+  }
 };
 </script>
 
